@@ -3,6 +3,65 @@ let deck = [];
 let currentCard = null;
 let isGameReady = false;
 
+// Keep the access code in one place so it can be changed easily.
+const PASSWORD = "NFD-8KQ7-XP42-6MZR";
+const AUTH_STORAGE_KEY = "nfd_auth";
+let hasLoadedGame = false;
+
+// ----------------------------
+// Access to the game
+// ----------------------------
+function showGame() {
+    document.getElementById("authScreen").classList.add("hidden");
+    document.getElementById("gameApp").classList.remove("hidden");
+
+    // Load the existing game only once per page session.
+    if (!hasLoadedGame) {
+        hasLoadedGame = true;
+        loadGame();
+    }
+}
+
+function showAuthScreen() {
+    document.getElementById("gameApp").classList.add("hidden");
+    document.getElementById("authScreen").classList.remove("hidden");
+    document.getElementById("accessCode").focus();
+}
+
+function logout() {
+    // Log out fully clears this site's browser storage as requested.
+    localStorage.clear();
+    isGameReady = false;
+    showAuthScreen();
+}
+
+function initializeAccess() {
+    const form = document.getElementById("authForm");
+    const input = document.getElementById("accessCode");
+    const error = document.getElementById("authError");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        if (input.value.trim() === PASSWORD) {
+            localStorage.setItem(AUTH_STORAGE_KEY, "true");
+            error.classList.add("hidden");
+            input.value = "";
+            showGame();
+            return;
+        }
+
+        error.classList.remove("hidden");
+        input.select();
+    });
+
+    if (localStorage.getItem(AUTH_STORAGE_KEY) === "true") {
+        showGame();
+    } else {
+        showAuthScreen();
+    }
+}
+
 // ----------------------------
 // Завантаження гри
 // ----------------------------
@@ -63,7 +122,7 @@ async function loadGame() {
 
 }
 
-loadGame();
+initializeAccess();
 
 
 // ----------------------------

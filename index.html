@@ -1,7 +1,29 @@
 <!DOCTYPE html><html lang="uk"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="style.css"><title>NeurofitnessDay</title></head>
-<body><div class="app">
+<body>
+<!-- Access screen is isolated from the game markup. -->
+<main id="authScreen" class="app authScreen">
+<img class="authLogo" src="assets/neuroshko.png" alt="NeurofitnessDay" onerror="this.style.display='none'">
+<h1>NeurofitnessDay</h1>
+<section class="authCard" aria-labelledby="accessTitle">
+<h2 id="accessTitle">Доступ лише для покупців</h2>
+<p>Введіть код доступу, який ви отримали після покупки.</p>
+<form id="authForm" novalidate>
+<label class="srOnly" for="accessCode">Код доступу</label>
+<input id="accessCode" type="password" autocomplete="current-password" placeholder="Код доступу" required>
+<button class="main" type="submit">Увійти</button>
+</form>
+<div id="authError" class="authError hidden" role="alert">
+<strong>Код доступу недійсний.</strong>
+<span>Якщо ви придбали NeurofitnessDay, але не можете увійти — зверніться до мене.</span>
+<a class="telegramLink" href="https://t.me/tatyana_neuropsy" target="_blank" rel="noopener noreferrer">Написати у Telegram</a>
+</div>
+</section>
+</main>
+
+<div id="gameApp" class="app hidden">
+<button class="logoutButton" type="button" onclick="logout()">🚪 Вийти</button>
 <img id="hero" src="assets/neuroshko.png" alt="Нейрошко" onerror="this.style.display='none'">
 <h1>NeurofitnessDay</h1>
 <p id="progress"></p>
