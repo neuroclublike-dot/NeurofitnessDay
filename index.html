@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="uk"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css"><title>NeurofitnessDay</title></head>
+<body><div class="app">
+<img id="hero" src="assets/neuroshko.png" alt="Нейрошко" onerror="this.style.display='none'">
+<h1>NeurofitnessDay</h1>
+<p id="progress"></p>
+<div id="start">
+
+    <button id="missionButton" class="main" onclick="nextMission()" disabled>
+        🌟 Відкрити сьогоднішню місію
+    </button>
+
+    <br><br>
+
+    <button id="libraryButton" class="secondary" onclick="openLibrary()" disabled>
+        📚 Бібліотека пригод
+    </button>
+
+    <br><br>
+
+    <button class="secondary" onclick="resetGame()">
+        🔄 Почати спочатку
+    </button>
+</div>
+<div id="library" class="hidden">
+
+<h2>📚 Бібліотека пригод</h2>
+
+<div class="libraryGrid">
+
+    <button class="category home" onclick="openCategory('home')">
+🏠<br>Домашні
+</button>
+
+<button class="category sport" onclick="openCategory('sport')">
+⚽<br>Спорт
+</button>
+
+<button class="category mind" onclick="openCategory('mind')">
+🧠<br>Розум
+</button>
+
+<button class="category creative" onclick="openCategory('creative')">
+🎨<br>Творчість
+</button>
+
+<button class="category emotion" onclick="openCategory('emotion')">
+❤️<br>Емоції
+</button>
+
+<button class="category fun" onclick="openCategory('fun')">
+😂<br>Кумедні
+</button>
+
+<button class="category bonus" onclick="openCategory('bonus')">
+🎁<br>Бонус
+</button>
+
+<button class="category crazy" onclick="openCategory('crazy')">
+⚡<br>Шалені
+</button>
+
+</div>
+
+<br>
+
+<button class="secondary" onclick="closeLibrary()">
+⬅ Назад
+</button>
+
+</div>
+<div id="screen2" class="hidden">
+<img id="cardImg" class="card" src="">
+<br><button id="completeButton" class="main" onclick="completeMission()">✅ Я виконав місію!</button>
+<br><button id="libraryBackButton" class="secondary hidden" onclick="backToLibrary()">⬅ Назад до бібліотеки</button>
+</div></div><script src="script.js"></script></body></html>
